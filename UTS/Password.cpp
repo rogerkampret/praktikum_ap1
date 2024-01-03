@@ -1,49 +1,37 @@
-#include <fstream>
 #include <iostream>
-#include <string>
 
-using namespace std;
-
-// Function to save a nick and password to a file
-void savePassword(const string &nick, const string &password) {
-  ofstream file("passwords.txt", ios::app);
-  if (file.is_open()) {
-    file << "Nick: " << nick << " Password: " << password << endl;
-    file.close();
-    cout << "Password saved successfully.\n";
-  } else {
-    cerr << "Error: Unable to open the file for saving the password.\n";
-  }
+void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n-1; i++) {
+        for (int j = 0; j < n-i-1; j++) {
+            if (arr[j] < arr[j+1]) {
+                // Tukar elemen jika elemen saat ini lebih kecil dari elemen berikutnya
+                int temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+        }
+    }
 }
 
 int main() {
-  string nick, password;
+    const int n = 5; // Ganti dengan ukuran array umur Anda
+    int umur[n] = {25, 30, 22, 35, 28}; // Ganti dengan data umur Anda
 
-  cout << "***********************************************" << endl;
-  cout << "        Welcome to the Registration    " << endl;
-  cout << "***********************************************" << endl;
-
-  cout << "Enter Username: ";
-  cin >> nick;
-
-  bool validPassword = false;
-  while (!validPassword) {
-    cout << "Enter a password (at least 8 characters): ";
-    cin >> password;
-
-    if (password.length() >= 8) {
-      validPassword = true;
-    } else {
-      cout << "Password must be at least 8 characters. Try again.\n";
+    std::cout << "Umur sebelum diurutkan: ";
+    for (int i = 0; i < n; i++) {
+        std::cout << umur[i] << " ";
     }
-  }
 
-  // Save the nick and password to a file
-  savePassword(nick, password);
+    // Panggil fungsi bubbleSort untuk mengurutkan umur
+    bubbleSort(umur, n);
 
-  cout << "***********************************************" << endl;
-  cout << "       Registration Completed Successfully      " << endl;
-  cout << "***********************************************" << endl;
+    std::cout << "\nUmur setelah diurutkan (dari tua ke muda): ";
+    for (int i = 0; i < n; i++) {
+        std::cout << umur[i] << " ";
+    }
 
-  return 0;
+    return 0;
 }
+```
+
+Anda dapat menyesuaikan ukuran array dan nilai umur sesuai kebutuhan. *Bubble sort* adalah salah satu metode pengurutan sederhana, namun ada metode pengurutan lain yang lebih efisien untuk data yang lebih besar, seperti *quick sort* atau *merge sort*.
